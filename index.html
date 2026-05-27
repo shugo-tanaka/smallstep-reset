@@ -1,12 +1,24 @@
 <!DOCTYPE html>
 <html>
-  <head><title>Redirecting…</title></head>
+  <head><title>Opening SmallStep…</title></head>
   <body>
+    <p id="msg">Opening SmallStep…</p>
+    <a id="deeplink" style="display:none"></a>
     <script>
-      // Supabase puts tokens in the hash — pass them straight to the app
       const hash = window.location.hash;
-      window.location.replace("smallstepapp://reset-password" + hash);
+      const link = document.getElementById("deeplink");
+      link.href = "smallstepapp://reset-password" + hash;
+      link.click();
+
+      // Fallback: show a tap button if auto-click didn't work
+      setTimeout(function() {
+        const btn = document.createElement("a");
+        btn.href = "smallstepapp://reset-password" + hash;
+        btn.innerText = "Tap here to open SmallStep";
+        btn.style.cssText = "display:block;margin-top:40px;font-size:18px;color:#64ffdb;text-align:center;font-family:sans-serif;";
+        document.body.appendChild(btn);
+        document.getElementById("msg").innerText = "If the app didn't open automatically:";
+      }, 1500);
     </script>
-    <p>Opening SmallStep…</p>
   </body>
 </html>
