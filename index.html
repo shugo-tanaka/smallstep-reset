@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+  <head><title>Redirecting…</title></head>
+  <body>
+    <script>
+      // Supabase puts tokens in the hash — pass them straight to the app
+      const hash = window.location.hash;
+      window.location.replace("smallstepapp://reset-password" + hash);
+    </script>
+    <p>Opening SmallStep…</p>
+  </body>
+</html>
